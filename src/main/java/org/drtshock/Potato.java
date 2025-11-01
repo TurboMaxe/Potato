@@ -13,7 +13,8 @@ public class Potato implements Tuber {
 
     private final boolean isVegan;
     private final List<Condiment> condiments = new ArrayList<>();
-
+    private final List<Seasoning> seasonings = new ArrayList<>();
+    
     public static void main(String[] args) {
         final Potato potato = new Potato(args.length == 1 && args[0].equals("--vegan"));
         if (potato.isVegan) System.out.println("This potato is vegan.");
@@ -38,6 +39,11 @@ public class Potato implements Tuber {
         return this.condiments;
     }
 
+    public List<Seasoning> getSeasonings() {
+        return this.seasonings;
+    }     
+    
+
     /**
      * Prepares the potato for consumption. Adds various condiments and prints them to stdout. Ensures that the potato
      * is delicious. If it is not, a {@link NotDeliciousException} is thrown.
@@ -48,6 +54,7 @@ public class Potato implements Tuber {
         this.addCondiments("chives", "butter", "pepper", "salt", "tabasco", "tomatoes", "onion");
         if (!this.isVegan) this.addCondiments("sour cream", "crumbled bacon", "grated cheese", "ketchup");
         this.listCondiments();
+        this.addSeasoning
         if (!this.isDelicious()) throw new NotDeliciousException(NotDeliciousReason.UNDERCOOKED);
     }
 
@@ -62,6 +69,14 @@ public class Potato implements Tuber {
             if (!condiment.isDelicious()) throw new NotDeliciousException(NotDeliciousReason.NOT_DELICIOUS_CONDIMENT);
             if (condiment.isExpired()) throw new NotDeliciousException(NotDeliciousReason.EXPIRED_CONDIMENT);
             this.getCondiments().add(condiment);
+        }
+    }
+
+     public void addSeasonings(String... names) throws NotDeliciousException {
+        for (String seasoningName : names) {
+            Seasoning seasoning = new Seasoning(seasoningName, true);
+            if (!seasoning.isDelicious()) throw new NotDeliciousException(NotDeliciousReason.NOT_DELICIOUS_CONDIMENT);
+            this.getSeasonings().add(seasoning);
         }
     }
 
