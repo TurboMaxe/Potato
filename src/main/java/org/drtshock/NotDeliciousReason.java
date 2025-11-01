@@ -10,5 +10,6 @@ public enum NotDeliciousReason {
     NOT_DELICIOUS_CONDIMENT,
     EXPIRED_CONDIMENT,
     EXPIRED,
+    BAD_SEASONING
 
 }
