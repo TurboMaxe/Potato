@@ -76,7 +76,7 @@ public class Potato implements Tuber {
      public void addSeasonings(String... names) throws NotDeliciousException {
         for (String seasoningName : names) {
             Seasoning seasoning = new Seasoning(seasoningName, true);
-            if (!seasoning.isDelicious()) throw new NotDeliciousException(NotDeliciousReason.NOT_DELICIOUS_CONDIMENT);
+            if (!seasoning.isDelicious()) throw new NotDeliciousException(NotDeliciousReason.BAD_SEASONING);
             this.getSeasonings().add(seasoning);
         }
     }
