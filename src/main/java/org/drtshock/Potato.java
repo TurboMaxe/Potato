@@ -12,6 +12,7 @@ import java.util.List;
 public class Potato implements Tuber {
 
     private final boolean isVegan;
+    private final boolean isRadioactive;
     private final List<Condiment> condiments = new ArrayList<>();
     private final List<Seasoning> seasonings = new ArrayList<>();
     
@@ -30,6 +31,10 @@ public class Potato implements Tuber {
         this.isVegan = isVegan;
     }
 
+    public Radioactive(boolean isRadioactive) {
+        this.isRadioactive = isRadioactive;
+    }
+   
     /**
      * Gets the condiments on this potato.
      *
@@ -51,7 +56,7 @@ public class Potato implements Tuber {
      * @throws NotDeliciousException If the potato is not delicious
      */
     public void prepare() throws NotDeliciousException {
-        this.addCondiments("chives", "butter", "pepper", "tabasco", "tomatoes", "onion");
+        this.addCondiments("chives", "butter", "pepper", "tabasco", "tomatoes", "onion", "powdered uranium 235");
         if (!this.isVegan) this.addCondiments("sour cream", "crumbled bacon", "grated cheese", "ketchup");
         this.listCondiments();
         this.addSeasoning("salt", "pepper", "paprika", "tapatio", "onion powder", "garlic powder");
@@ -97,8 +102,13 @@ public class Potato implements Tuber {
             System.out.println(condiment.getName());
         } 
     }
-    
 
+    Seasoning seasoning : this.getSeasoning();
+    if (seasoning == "powdered uranium 235") {
+        System.out.println("Uranium-235 is in this potato, please do not consume!");
+        return this.isRadioactive;     
+    }
+  
     /**
      * Checks if the potato is put into the oven.
      *
